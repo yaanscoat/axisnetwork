@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · AxisNet.work</title>
+  <meta name="description" content="Read the source, README and language breakdown of AxisNet.work projects.">
+  <meta name="theme-color" content="#121314">
+  <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32">
+  <link rel="icon" href="/assets/img/icon-64.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="preload" href="/data/projects.json" as="fetch" crossorigin>
+  <script type="module" src="/assets/js/projects.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="AxisNet.work home">
+        <img src="/assets/img/icon-64.png" alt="" width="22" height="22">
+        <span class="brand-name">AxisNet<span>.work</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
+      <nav class="nav" id="nav">
+        <a href="/#partners">Partners</a>
+        <a href="/projects" aria-current="page">Projects</a>
+        <a href="/#suloon">Suloon</a>
+        <a href="/#members">Members</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap browser">
+    <aside class="browser-side">
+      <nav data-repos aria-label="Projects"></nav>
+    </aside>
+    <div class="browser-main" data-repo>
+      <p class="empty">Loading projects…</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 AxisNet.work · Sydney, NSW</span>
+      <nav aria-label="Legal">
+        <a href="/terms">Terms of Service</a>
+        <a href="/acceptable-use">Acceptable Use Policy</a>
+        <a href="/privacy">Privacy &amp; Data Security</a>
+        <a href="mailto:support@axisnet.work">support@axisnet.work</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

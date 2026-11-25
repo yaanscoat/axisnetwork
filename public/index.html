@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AxisNet.work</title>
+  <meta name="description" content="AxisNet.work runs proxy tools and hosting from Sydney for the people we partner with.">
+  <meta name="theme-color" content="#121314">
+  <meta property="og:title" content="AxisNet.work">
+  <meta property="og:description" content="Proxy tools and hosting from Sydney, for the people we partner with.">
+  <meta property="og:image" content="/assets/img/icon-512.png">
+  <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32">
+  <link rel="icon" href="/assets/img/icon-64.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="preload" href="/data/land.json" as="fetch" crossorigin>
+  <script type="module" src="/assets/js/home.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="AxisNet.work home">
+        <img src="/assets/img/icon-64.png" alt="" width="22" height="22">
+        <span class="brand-name">AxisNet<span>.work</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
+      <nav class="nav" id="nav">
+        <a href="/#partners">Partners</a>
+        <a href="/projects">Projects</a>
+        <a href="/#suloon">Suloon</a>
+        <a href="/#members">Members</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="intro">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="label">Proxy tools &amp; hosting · Sydney</span>
+          <h1 id="intro">We build proxy tools and host projects for people we choose to work with.</h1>
+          <p>AxisNet.work is a small group running our own servers in Sydney. We don’t sell plans to clients. We take on partners, and look after their hosting and tooling ourselves.</p>
+          <div class="hero-actions">
+            <a class="btn btn--solid" href="#contact">Request a partnership</a>
+            <a class="btn" href="/projects">Browse our projects</a>
+          </div>
+        </div>
+
+        <div class="network">
+          <div class="globe">
+            <canvas tabindex="0" aria-label="Interactive globe showing our servers in Sydney, Australia. Drag or use the arrow keys to rotate, plus and minus to zoom."></canvas>
+            <div class="globe-controls">
+              <button type="button" data-globe="home">Sydney</button>
+              <button type="button" data-globe="out" aria-label="Zoom out">−</button>
+              <button type="button" data-globe="in" aria-label="Zoom in">+</button>
+            </div>
+          </div>
+          <ul class="nodes" aria-label="Servers">
+            <li><code>SYD-01</code> Sydney, New South Wales</li>
+            <li><code>SYD-02</code> Sydney, New South Wales</li>
+            <li><code>SYD-03</code> Sydney, New South Wales</li>
+          </ul>
+          <p class="nodes-note">Drag the globe to turn it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="partners" aria-labelledby="partners-title">
+      <div class="wrap split">
+        <header>
+          <span class="label">Partners, not clients</span>
+          <h2 id="partners-title">How working with us goes</h2>
+          <p>We’d rather look after a few projects properly than a lot of them badly. So we pick who we work with, and we talk to the people we host.</p>
+        </header>
+
+        <div>
+          <div class="offer">
+            <div>
+              <h3>Proxy tools</h3>
+              <p>Web proxy software we write and maintain ourselves. The source is public, and you can read through it on our <a href="/projects">projects page</a>.</p>
+            </div>
+            <div>
+              <h3>Hosting</h3>
+              <p>Room on our Sydney servers for your project, set up by us and kept running by us.</p>
+            </div>
+          </div>
+
+          <ol class="steps">
+            <li>
+              <div>
+                <h3>Get in touch</h3>
+                <p>Send us a message on Discord once it opens, or email us now. Tell us who you are and what you want to run.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>We talk it through</h3>
+                <p>If it’s a good fit for both sides, we agree on what we’ll provide and what we expect in return.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>You’re set up</h3>
+                <p>We get your project running. When something breaks, you message us directly, not a ticket queue.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="label">Open source</span>
+            <h2 id="projects-title">Projects</h2>
+          </div>
+          <a href="/projects">Open the project browser</a>
+        </div>
+        <ul class="project-list" data-project-list>
+          <li class="empty">Loading projects…</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="suloon" id="suloon" aria-labelledby="suloon-title">
+      <div class="wrap">
+        <div class="suloon-stage" data-src="/assets/img/suloon.png">
+          <canvas aria-hidden="true"></canvas>
+          <noscript><img src="/assets/img/suloon.png" alt=""></noscript>
+        </div>
+        <div class="suloon-copy">
+          <span class="label">Upcoming · Codename</span>
+          <h2 class="suloon-title" id="suloon-title" aria-label="Project Suloon">Project Suloon</h2>
+          <dl class="suloon-file">
+            <dt>Status</dt>
+            <dd>In development</dd>
+            <dt>Scope</dt>
+            <dd><span class="redact" style="width: 11em" aria-label="Redacted"></span></dd>
+            <dt>Release</dt>
+            <dd><span class="redact" style="width: 6em" aria-label="Redacted"></span></dd>
+            <dt>Notes</dt>
+            <dd><span class="redact" style="width: 14em; max-width: 100%" aria-label="Redacted"></span></dd>
+          </dl>
+          <p class="suloon-note">We’ll say more when there’s something to show.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="members" aria-labelledby="members-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="label">Who runs this</span>
+            <h2 id="members-title">Members</h2>
+          </div>
+        </div>
+        <ul class="members">
+          <li>
+            <img src="https://avatars.githubusercontent.com/u/337248633?v=4&amp;s=128" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>yaanscoat</h3>
+              <p>Australia</p>
+              <a href="https://github.com/yaanscoat" rel="noopener">github.com/yaanscoat</a>
+            </div>
+          </li>
+          <li>
+            <img src="https://avatars.githubusercontent.com/u/356853868?v=4&amp;s=128" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>idevs</h3>
+              <p>@lilboom-l</p>
+              <a href="https://github.com/lilboom-l" rel="noopener">github.com/lilboom-l</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="label">Contact</span>
+            <h2 id="contact-title">Get in touch</h2>
+          </div>
+        </div>
+        <dl class="contact-rows">
+          <div>
+            <dt>Discord</dt>
+            <dd>Our server is still being set up. Once it’s open, it’s where partnership requests go.</dd>
+            <dd><span class="btn" aria-disabled="true">Opening soon</span></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd>Support, questions, and partnership requests until Discord is ready.</dd>
+            <dd><a class="btn" href="mailto:support@axisnet.work">support@axisnet.work</a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 AxisNet.work · Sydney, NSW</span>
+      <nav aria-label="Legal">
+        <a href="/terms">Terms of Service</a>
+        <a href="/acceptable-use">Acceptable Use Policy</a>
+        <a href="/privacy">Privacy &amp; Data Security</a>
+        <a href="mailto:support@axisnet.work">support@axisnet.work</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
