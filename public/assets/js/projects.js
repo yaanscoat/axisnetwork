@@ -41,6 +41,7 @@ function renderSidebar() {
           el('li', {}, el('a', {
             href: `/projects?repo=${p.owner}/${p.name}`,
             'data-key': `${p.owner}/${p.name}`,
+            'data-spot': true,
             onclick: (e) => {
               e.preventDefault();
               open(p);

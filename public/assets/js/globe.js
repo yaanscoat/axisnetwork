@@ -4,12 +4,15 @@
 const RAD = Math.PI / 180;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-export async function mountGlobe(root, { marker }) {
+// onMarker(x, y, visible) reports the marker position in CSS pixels within the canvas.
+export async function mountGlobe(root, { marker, onMarker }) {
   const canvas = root.querySelector('canvas');
   const ctx = canvas.getContext('2d');
   const css = getComputedStyle(document.documentElement);
   const color = {
     sphere: css.getPropertyValue('--surface').trim(),
+    sphereLit: '#2a2c2c',
+    sphereDark: '#0e0f10',
     edge: css.getPropertyValue('--line-strong').trim(),
     land: css.getPropertyValue('--text').trim(),
     accent: css.getPropertyValue('--accent').trim(),
@@ -40,16 +43,19 @@ export async function mountGlobe(root, { marker }) {
   let frame = 0;
   let visible = true;
   let t0 = performance.now();
+  // Where the light comes from, in globe radii from the centre. Starts upper left.
+  const light = { x: -0.45, y: 0.5 };
+  const lightTarget = { ...light };
 
   const MIN_ZOOM = 1;
   const MAX_ZOOM = 7;
 
   function resize() {
-    const rect = canvas.getBoundingClientRect();
+    // Layout size, not getBoundingClientRect: the globe may be mid scale-in transition.
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    size = rect.width;
-    canvas.width = Math.round(rect.width * dpr);
-    canvas.height = Math.round(rect.height * dpr);
+    size = canvas.clientWidth;
+    canvas.width = Math.round(canvas.clientWidth * dpr);
+    canvas.height = Math.round(canvas.clientHeight * dpr);
     request();
   }
 
@@ -77,9 +83,20 @@ export async function mountGlobe(root, { marker }) {
     ctx.arc(cx, cy, lens, 0, Math.PI * 2);
     ctx.clip();
 
+    // Light direction (x right, y up, z towards the viewer), steered by the pointer.
+    const lz = 0.9;
+    const ln = Math.hypot(light.x, light.y, lz);
+    const Lx = light.x / ln;
+    const Ly = light.y / ln;
+    const Lz = lz / ln;
+
+    const glow = ctx.createRadialGradient(cx + Lx * R * 0.7, cy - Ly * R * 0.7, 0, cx, cy, R * 1.15);
+    glow.addColorStop(0, color.sphereLit);
+    glow.addColorStop(0.55, color.sphere);
+    glow.addColorStop(1, color.sphereDark);
     ctx.beginPath();
     ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.fillStyle = color.sphere;
+    ctx.fillStyle = glow;
     ctx.fill();
     ctx.lineWidth = dpr;
     ctx.strokeStyle = color.edge;
@@ -96,18 +113,20 @@ export async function mountGlobe(root, { marker }) {
     const dot = Math.max(1.1 * dpr, Math.min(R * RAD * 0.6, 12 * dpr));
     const half = dot / 2;
 
-    // Bucket by facing angle so the limb fades without per-dot alpha changes.
-    const buckets = [new Path2D(), new Path2D(), new Path2D(), new Path2D()];
+    // Bucket dots by how much light they catch, so brightness varies without
+    // changing alpha per dot. The surface normal of a unit sphere is (x, y, z).
+    const buckets = [new Path2D(), new Path2D(), new Path2D(), new Path2D(), new Path2D()];
     for (let i = 0; i < count; i++) {
       const [x, y, z] = project(sinLat[i], cosLat[i], sinLon[i], cosLon[i], l0s, l0c, p0s, p0c);
       if (z <= 0) continue;
       const sx = cx + x * R;
       const sy = cy - y * R;
       if (sx < -dot || sy < -dot || sx > w + dot || sy > h + dot) continue;
-      const b = z > 0.6 ? 3 : z > 0.35 ? 2 : z > 0.15 ? 1 : 0;
+      const lit = 0.3 * z + 0.7 * Math.max(0, x * Lx + y * Ly + z * Lz);
+      const b = lit > 0.78 ? 4 : lit > 0.58 ? 3 : lit > 0.38 ? 2 : lit > 0.2 ? 1 : 0;
       buckets[b].rect(sx - half, sy - half, dot, dot);
     }
-    const alphas = [0.16, 0.3, 0.48, 0.66];
+    const alphas = [0.1, 0.2, 0.36, 0.56, 0.82];
     ctx.fillStyle = color.land;
     buckets.forEach((path, i) => {
       ctx.globalAlpha = alphas[i];
@@ -132,7 +151,9 @@ export async function mountGlobe(root, { marker }) {
     );
     const mx = cx + m[0] * R;
     const my = cy - m[1] * R;
-    if (m[2] > 0 && Math.hypot(mx - cx, my - cy) < lens) {
+    const markerVisible = m[2] > 0 && Math.hypot(mx - cx, my - cy) < lens;
+    onMarker?.(mx / dpr, my / dpr, markerVisible);
+    if (markerVisible) {
       const fade = Math.min(1, m[2] * 4);
       ctx.globalAlpha = fade;
 
@@ -197,6 +218,13 @@ export async function mountGlobe(root, { marker }) {
       }
     }
 
+    if (Math.abs(lightTarget.x - light.x) + Math.abs(lightTarget.y - light.y) > 0.002) {
+      const ease = reduceMotion ? 1 : 0.08;
+      light.x += (lightTarget.x - light.x) * ease;
+      light.y += (lightTarget.y - light.y) * ease;
+      moving = true;
+    }
+
     draw(now);
     // Keep animating for the marker pulse while on screen.
     if (moving || dragging || !reduceMotion) request();
@@ -208,6 +236,28 @@ export async function mountGlobe(root, { marker }) {
 
   const clampLat = (v) => Math.max(-80, Math.min(80, v));
   const wrap = (d) => ((((d + 180) % 360) + 360) % 360) - 180;
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+  // The pointer acts as the light source, wherever it is on the page.
+  window.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    const rect = canvas.getBoundingClientRect();
+    const half = rect.width / 2 || 1;
+    lightTarget.x = clamp((e.clientX - rect.left - half) / half, -1.6, 1.6) * 0.75;
+    lightTarget.y = clamp(-(e.clientY - rect.top - half) / half, -1.6, 1.6) * 0.75;
+    request();
+  }, { passive: true });
+
+  // Scrolling the page turns the globe a little.
+  let lastScroll = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const delta = window.scrollY - lastScroll;
+    lastScroll = window.scrollY;
+    if (reduceMotion || dragging) return;
+    view.lon += delta * 0.045;
+    target.lon += delta * 0.045;
+    request();
+  }, { passive: true });
 
   // ---- Pointer input: one pointer rotates, two pointers pinch-zoom ----
   const pointers = new Map();

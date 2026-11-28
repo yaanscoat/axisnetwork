@@ -1,4 +1,6 @@
-// Shared by every page: mobile nav toggle, plus helpers for project data.
+// Shared by every page: page motion, mobile nav toggle, plus helpers for project data.
+
+export { reveal } from './fx.js';
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');

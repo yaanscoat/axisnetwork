@@ -1,13 +1,14 @@
-// Pulls members, repos, languages, READMEs and file trees from GitHub into
-// public/data/projects.json so the site can show projects without sending
-// visitors to GitHub. Runs as the Vercel build step and can be run locally.
+// Pulls the AxisNet-work organisation's repos, languages, READMEs and file
+// trees from GitHub into public/data/projects.json so the site can show
+// projects without sending visitors to GitHub. Runs as the Vercel build step
+// and can be run locally.
 //
 // Set GITHUB_TOKEN to avoid the 60 requests/hour anonymous limit.
 // If anything fails, the existing snapshot is kept and the build continues.
 
 import { readFile, writeFile } from 'node:fs/promises';
 
-const MEMBERS = ['yaanscoat', 'lilboom-l'];
+const ORG = 'AxisNet-work';
 
 // Repos that shouldn't appear on the site, as "owner/name".
 const EXCLUDE = new Set([]);
@@ -87,30 +88,16 @@ async function loadRepo(repo) {
 }
 
 async function main() {
-  const members = [];
-  const projects = [];
+  const repos = await gh(`/orgs/${ORG}/repos?per_page=100&type=public&sort=pushed`);
+  if (!repos) throw new Error(`organisation ${ORG} not found`);
 
-  for (const login of MEMBERS) {
-    const [user, repos] = await Promise.all([
-      gh(`/users/${login}`),
-      gh(`/users/${login}/repos?per_page=100&sort=pushed`),
-    ]);
-    if (!user) throw new Error(`user ${login} not found`);
-    members.push({
-      login: user.login,
-      name: user.name,
-      bio: user.bio,
-      avatar: user.avatar_url,
-      url: user.html_url,
-      location: user.location,
-    });
-    for (const repo of repos.filter(isListed)) projects.push(await loadRepo(repo));
-  }
+  const projects = [];
+  for (const repo of repos.filter(isListed)) projects.push(await loadRepo(repo));
 
   projects.sort((a, b) => b.pushedAt.localeCompare(a.pushedAt));
-  const data = { generatedAt: new Date().toISOString(), members, projects };
+  const data = { generatedAt: new Date().toISOString(), org: ORG, projects };
   await writeFile(OUT, JSON.stringify(data));
-  console.log(`sync-projects: wrote ${projects.length} projects for ${members.length} members`);
+  console.log(`sync-projects: wrote ${projects.length} project${projects.length === 1 ? "" : "s"} from ${ORG}`);
 }
 
 main().catch(async (err) => {

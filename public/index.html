@@ -4,22 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AxisNet.work</title>
-  <meta name="description" content="AxisNet.work runs proxy tools and hosting from Sydney for the people we partner with.">
+  <meta name="description" content="AxisNet.work runs proxy tools and hosting from Sydney for the people we partner with. Project Suloon, the Ultimate UBG, launches in mid 2027.">
   <meta name="theme-color" content="#121314">
   <meta property="og:title" content="AxisNet.work">
-  <meta property="og:description" content="Proxy tools and hosting from Sydney, for the people we partner with.">
+  <meta property="og:description" content="Proxy tools and hosting from Sydney, for the people we partner with. Project Suloon launches in mid 2027.">
   <meta property="og:image" content="/assets/img/icon-512.png">
   <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32">
   <link rel="icon" href="/assets/img/icon-64.png" sizes="64x64">
   <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&display=swap">
   <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
   <link rel="preload" href="/data/land.json" as="fetch" crossorigin>
+  <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');</script>
   <script type="module" src="/assets/js/home.js"></script>
 </head>
-<body>
+<body class="home">
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -31,176 +33,221 @@
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
       <nav class="nav" id="nav">
         <a href="/#partners">Partners</a>
-        <a href="/projects">Projects</a>
         <a href="/#suloon">Suloon</a>
+        <a href="/projects">Projects</a>
         <a href="/#members">Members</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>
   </header>
 
+  <nav class="axis-rail" aria-label="Sections on this page">
+    <ol>
+      <li><a href="#network" data-axis="network"><b>00</b><span>Network</span></a></li>
+      <li><a href="#partners" data-axis="partners"><b>01</b><span>Partners</span></a></li>
+      <li><a href="#suloon" data-axis="suloon"><b>02</b><span>Suloon</span></a></li>
+      <li><a href="#projects" data-axis="projects"><b>03</b><span>Projects</span></a></li>
+      <li><a href="#members" data-axis="members"><b>04</b><span>Members</span></a></li>
+      <li><a href="#contact" data-axis="contact"><b>05</b><span>Contact</span></a></li>
+    </ol>
+  </nav>
+
   <main id="main">
-    <section class="hero" aria-labelledby="intro">
-      <div class="wrap">
+    <!-- 00 · Network -->
+    <section class="hero" id="network" aria-labelledby="intro">
+      <div class="crosshair" aria-hidden="true">
+        <i class="crosshair-h"></i>
+        <i class="crosshair-v"></i>
+        <span class="crosshair-tag">33.87°S&ensp;151.21°E</span>
+      </div>
+
+      <div class="wrap hero-grid">
         <div class="hero-copy">
-          <span class="label">Proxy tools &amp; hosting · Sydney</span>
-          <h1 id="intro">We build proxy tools and host projects for people we choose to work with.</h1>
-          <p>AxisNet.work is a small group running our own servers in Sydney. We don’t sell plans to clients. We take on partners, and look after their hosting and tooling ourselves.</p>
-          <div class="hero-actions">
+          <a class="hero-flag" href="#suloon" data-reveal><span class="hero-flag-dot"></span>Project Suloon has been revealed</a>
+          <h1 class="hero-title" id="intro" data-reveal>
+            <span class="line"><span>Proxy tools</span></span>
+            <span class="line"><span>and hosting for</span></span>
+            <span class="line"><span>people we <em>choose.</em></span></span>
+          </h1>
+          <p class="hero-lede" data-reveal style="--i: 3">AxisNet.work is a small group running our own servers in Sydney. We don’t sell plans to clients. We take on partners and look after them ourselves.</p>
+          <div class="hero-actions" data-reveal style="--i: 4">
             <a class="btn btn--solid" href="#contact">Request a partnership</a>
             <a class="btn" href="/projects">Browse our projects</a>
           </div>
         </div>
 
-        <div class="network">
-          <div class="globe">
-            <canvas tabindex="0" aria-label="Interactive globe showing our servers in Sydney, Australia. Drag or use the arrow keys to rotate, plus and minus to zoom."></canvas>
-            <div class="globe-controls">
-              <button type="button" data-globe="home">Sydney</button>
-              <button type="button" data-globe="out" aria-label="Zoom out">−</button>
-              <button type="button" data-globe="in" aria-label="Zoom in">+</button>
-            </div>
+        <div class="globe" data-reveal style="--i: 1">
+          <canvas tabindex="0" aria-label="Interactive globe showing our servers in Sydney, Australia. Drag or use the arrow keys to rotate, plus and minus to zoom."></canvas>
+          <div class="globe-controls">
+            <button type="button" data-globe="home">Sydney</button>
+            <button type="button" data-globe="out" aria-label="Zoom out">−</button>
+            <button type="button" data-globe="in" aria-label="Zoom in">+</button>
           </div>
-          <ul class="nodes" aria-label="Servers">
-            <li><code>SYD-01</code> Sydney, New South Wales</li>
-            <li><code>SYD-02</code> Sydney, New South Wales</li>
-            <li><code>SYD-03</code> Sydney, New South Wales</li>
-          </ul>
-          <p class="nodes-note">Drag the globe to turn it.</p>
         </div>
       </div>
-    </section>
 
-    <section class="section" id="partners" aria-labelledby="partners-title">
-      <div class="wrap split">
-        <header>
-          <span class="label">Partners, not clients</span>
-          <h2 id="partners-title">How working with us goes</h2>
-          <p>We’d rather look after a few projects properly than a lot of them badly. So we pick who we work with, and we talk to the people we host.</p>
-        </header>
-
-        <div>
-          <div class="offer">
-            <div>
-              <h3>Proxy tools</h3>
-              <p>Web proxy software we write and maintain ourselves. The source is public, and you can read through it on our <a href="/projects">projects page</a>.</p>
-            </div>
-            <div>
-              <h3>Hosting</h3>
-              <p>Room on our Sydney servers for your project, set up by us and kept running by us.</p>
-            </div>
-          </div>
-
-          <ol class="steps">
-            <li>
-              <div>
-                <h3>Get in touch</h3>
-                <p>Send us a message on Discord once it opens, or email us now. Tell us who you are and what you want to run.</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>We talk it through</h3>
-                <p>If it’s a good fit for both sides, we agree on what we’ll provide and what we expect in return.</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>You’re set up</h3>
-                <p>We get your project running. When something breaks, you message us directly, not a ticket queue.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="label">Open source</span>
-            <h2 id="projects-title">Projects</h2>
-          </div>
-          <a href="/projects">Open the project browser</a>
-        </div>
-        <ul class="project-list" data-project-list>
-          <li class="empty">Loading projects…</li>
+      <div class="wrap hero-foot">
+        <ul class="hero-nodes" aria-label="Servers">
+          <li><code>SYD-01</code></li>
+          <li><code>SYD-02</code></li>
+          <li><code>SYD-03</code></li>
+          <li>Sydney, New South Wales</li>
         </ul>
+        <span class="hero-hint">Drag the globe to turn it</span>
       </div>
     </section>
 
+    <!-- 01 · Partners -->
+    <section class="manifesto" id="partners" aria-labelledby="partners-title">
+      <div class="wrap">
+        <h2 class="kicker" id="partners-title"><span>01</span>Partners, not clients</h2>
+        <p class="manifesto-text" data-words>We don’t have clients. We have partners: people whose projects we want to see running. We choose who we work with, host them on our own servers, and when something breaks they talk to us, not a ticket queue.</p>
+
+        <div class="provide" data-reveal-group>
+          <article data-spot>
+            <span class="provide-mark">A</span>
+            <h3>Proxy tools</h3>
+            <p>Web proxy software we write, run and maintain ourselves.</p>
+          </article>
+          <article data-spot>
+            <span class="provide-mark">B</span>
+            <h3>Hosting</h3>
+            <p>Room on our Sydney servers for your project, set up and kept running by us.</p>
+          </article>
+        </div>
+
+        <h3 class="kicker kicker--minor">How it works</h3>
+        <ol class="timeline" data-timeline>
+          <li>
+            <span class="timeline-n">01</span>
+            <h4>Get in touch</h4>
+            <p>Message us on <a href="https://discord.gg/dJqzWMXTGG" rel="noopener">our Discord</a> or email us. Tell us who you are and what you want to run.</p>
+          </li>
+          <li>
+            <span class="timeline-n">02</span>
+            <h4>We talk it through</h4>
+            <p>If it’s a good fit for both sides, we agree on what we’ll provide and what we expect in return.</p>
+          </li>
+          <li>
+            <span class="timeline-n">03</span>
+            <h4>You’re set up</h4>
+            <p>We get your project running. When something breaks, you message us directly.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 02 · Suloon -->
     <section class="suloon" id="suloon" aria-labelledby="suloon-title">
-      <div class="wrap">
-        <div class="suloon-stage" data-src="/assets/img/suloon.png">
-          <canvas aria-hidden="true"></canvas>
-          <noscript><img src="/assets/img/suloon.png" alt=""></noscript>
+      <div class="suloon-pin">
+        <div class="wrap suloon-grid">
+          <div class="suloon-stage" data-src="/assets/img/suloon.png">
+            <canvas aria-hidden="true"></canvas>
+            <noscript><img src="/assets/img/suloon.png" alt=""></noscript>
+          </div>
+
+          <div class="suloon-copy">
+            <p class="kicker suloon-kicker"><span>02</span>Project Suloon&ensp;·&ensp;<b data-state>Classified</b></p>
+            <h2 class="suloon-title" id="suloon-title" aria-label="Suloon" data-decrypt>SULOON</h2>
+
+            <div class="suloon-body" data-phase="1">
+              <p class="suloon-sub">The Ultimate UBG</p>
+              <p class="suloon-desc">Suloon is our upcoming web proxy. Over 8,000 games, a fast proxy, a chatroom, music, movies, downloads and free tools, all in one place.</p>
+            </div>
+
+            <ul class="suloon-features" data-phase="2" aria-label="Features">
+              <li style="--i: 0"><b>8,000+</b> games</li>
+              <li style="--i: 1">Ultrafast proxy</li>
+              <li style="--i: 2">Chatroom</li>
+              <li style="--i: 3">Music</li>
+              <li style="--i: 4">Movies</li>
+              <li style="--i: 5">Downloads</li>
+              <li style="--i: 6">Free tools</li>
+              <li style="--i: 7">And more</li>
+            </ul>
+
+            <div class="suloon-launch" data-phase="3">
+              <dl>
+                <div><dt>Full launch</dt><dd>Mid 2027</dd></div>
+                <div><dt>Source</dt><dd>Closed</dd></div>
+              </dl>
+              <a class="btn btn--suloon" href="https://discord.gg/dJqzWMXTGG" rel="noopener">Join the Discord</a>
+            </div>
+          </div>
         </div>
-        <div class="suloon-copy">
-          <span class="label">Upcoming · Codename</span>
-          <h2 class="suloon-title" id="suloon-title" aria-label="Project Suloon">Project Suloon</h2>
-          <dl class="suloon-file">
-            <dt>Status</dt>
-            <dd>In development</dd>
-            <dt>Scope</dt>
-            <dd><span class="redact" style="width: 11em" aria-label="Redacted"></span></dd>
-            <dt>Release</dt>
-            <dd><span class="redact" style="width: 6em" aria-label="Redacted"></span></dd>
-            <dt>Notes</dt>
-            <dd><span class="redact" style="width: 14em; max-width: 100%" aria-label="Redacted"></span></dd>
-          </dl>
-          <p class="suloon-note">We’ll say more when there’s something to show.</p>
+
+        <div class="wrap suloon-meter" aria-hidden="true">
+          <span data-meter>Decrypting 0%</span>
+          <i><b></b></i>
         </div>
       </div>
     </section>
 
-    <section class="section" id="members" aria-labelledby="members-title">
+    <!-- 03 · Projects -->
+    <section class="projects" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="label">Who runs this</span>
-            <h2 id="members-title">Members</h2>
-          </div>
+        <div class="section-top" data-reveal>
+          <h2 class="kicker" id="projects-title"><span>03</span>Projects</h2>
+          <p>Public work from <a href="https://github.com/AxisNet-work" rel="noopener">github.com/AxisNet-work</a>. Open any of it here to read the code.</p>
         </div>
-        <ul class="members">
-          <li>
-            <img src="https://avatars.githubusercontent.com/u/337248633?v=4&amp;s=128" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>yaanscoat</h3>
-              <p>Australia</p>
-              <a href="https://github.com/yaanscoat" rel="noopener">github.com/yaanscoat</a>
-            </div>
+        <ol class="index-list" data-project-list data-reveal-group>
+          <li class="empty">Loading projects…</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 04 · Members -->
+    <section class="people-section" id="members" aria-labelledby="members-title">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <h2 class="kicker" id="members-title"><span>04</span>Members</h2>
+          <p>The people who run AxisNet.work.</p>
+        </div>
+        <ul class="people" data-reveal-group>
+          <li data-spot data-avatar="https://avatars.githubusercontent.com/u/337248633?v=4&amp;s=320">
+            <a href="https://github.com/yaanscoat" rel="noopener">
+              <img class="people-avatar" src="https://avatars.githubusercontent.com/u/337248633?v=4&amp;s=128" alt="" width="56" height="56" loading="lazy">
+              <span class="people-name">yaanscoat</span>
+              <span class="people-meta">@yaanscoat&ensp;·&ensp;Australia</span>
+              <span class="people-go">GitHub ↗</span>
+            </a>
           </li>
-          <li>
-            <img src="https://avatars.githubusercontent.com/u/356853868?v=4&amp;s=128" alt="" width="64" height="64" loading="lazy">
-            <div>
-              <h3>idevs</h3>
-              <p>@lilboom-l</p>
-              <a href="https://github.com/lilboom-l" rel="noopener">github.com/lilboom-l</a>
-            </div>
+          <li data-spot data-avatar="https://avatars.githubusercontent.com/u/356853868?v=4&amp;s=320">
+            <a href="https://github.com/lilboom-l" rel="noopener">
+              <img class="people-avatar" src="https://avatars.githubusercontent.com/u/356853868?v=4&amp;s=128" alt="" width="56" height="56" loading="lazy">
+              <span class="people-name">idevs</span>
+              <span class="people-meta">@lilboom-l</span>
+              <span class="people-go">GitHub ↗</span>
+            </a>
           </li>
         </ul>
       </div>
+      <img class="people-float" alt="" aria-hidden="true">
     </section>
 
-    <section class="section" id="contact" aria-labelledby="contact-title">
+    <!-- 05 · Contact -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="label">Contact</span>
-            <h2 id="contact-title">Get in touch</h2>
-          </div>
+        <h2 class="kicker" id="contact-title"><span>05</span>Contact</h2>
+        <p class="contact-lead" data-reveal>Want to partner with us, or need a hand?</p>
+        <a class="mega" href="mailto:support@axisnet.work" data-reveal>support@axisnet.work</a>
+        <div class="contact-actions" data-reveal>
+          <a class="btn btn--solid" href="https://discord.gg/dJqzWMXTGG" rel="noopener">Join our Discord</a>
+          <span>Partnership requests, support and Suloon updates all happen there.</span>
         </div>
-        <dl class="contact-rows">
+
+        <dl class="contact-grid" data-reveal-group>
           <div>
             <dt>Discord</dt>
-            <dd>Our server is still being set up. Once it’s open, it’s where partnership requests go.</dd>
-            <dd><span class="btn" aria-disabled="true">Opening soon</span></dd>
+            <dd><a href="https://discord.gg/dJqzWMXTGG" rel="noopener">discord.gg/dJqzWMXTGG</a></dd>
           </div>
           <div>
-            <dt>Email</dt>
-            <dd>Support, questions, and partnership requests until Discord is ready.</dd>
-            <dd><a class="btn" href="mailto:support@axisnet.work">support@axisnet.work</a></dd>
+            <dt>Partnership requests</dt>
+            <dd>Ask on Discord or email us with who you are and what you want to run.</dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Sydney, New South Wales</dd>
           </div>
         </dl>
       </div>
